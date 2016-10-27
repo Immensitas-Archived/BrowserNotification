@@ -14,9 +14,9 @@
 
     b) manifest.json
            {
- 		 "name":"XXXXX",
-	         "gcm_sender_id": "XXXXXXX"
-	   }
+                 "name":"XXXXX",
+                 "gcm_sender_id": "XXXXXXX"
+           }
 
 3) Change the vizuryServiceWorker.js and manifest.json file with the actual macros values and put them in the root directory of your domain. 
 
