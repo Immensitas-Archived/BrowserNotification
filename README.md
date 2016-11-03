@@ -4,7 +4,7 @@
 
 ## <a id="integration-steps"></a>Integration Steps
 
-1) Go through the integration document(Vizury_Engage_Browser-Notifications_Tech-Integration.docx) which describes all aspects of integration.
+1) Go through the integration document(Vizury_Engage_Browser-Notifications_Integration.docx) which describes all aspects of integration.
 
 2) From your account manager get the values for the macros :
 
