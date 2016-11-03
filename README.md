@@ -18,5 +18,13 @@
                  "gcm_sender_id": "XXXXXXX"
            }
 
+    c) From the integration document get the following place holder from account manager.
+           //Replace “VIZVRMXYZ” with the one which we will be sharing with you
+           viz.src = ("https:" == document.location.protocol ? "https://cdn6.vizury.com" : "http://cdn6.vizury.com ") + "/analyze/pixel.php?account_id=VIZVRMXYZ";
+
+    d) Get the customjs link as given in the tech integration doc.
+	   <script src="<filename as provided by Account Manager>" >
+          </script>
+
 3) Change the vizuryServiceWorker.js and manifest.json file with the actual macros values and put them in the root directory of your domain. 
 
