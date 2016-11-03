@@ -9,7 +9,7 @@
 2) From your account manager get the values for the macros :
 
     a) vizuryServiceWorker.js
-           var advid = 'VIZVRMXXXX'; // Replace this macro with relevant Advertiser ID.
+           var advid = 'VIZVRMXYZ'; // Replace this macro with relevant Advertiser ID.
            var target = "XXXX.vizury.com"; // Replace this with relevant domain.
 
     b) manifest.json
