@@ -1,7 +1,7 @@
 var type = "LIVE";
 var version = "v1";
 var status = {};
-var advid = 'VIZVRMXXXX';
+var advid = 'VIZVRMXYZ';
 var target = "XXXX.vizury.com";
 
 self.addEventListener('install', function(event) {
