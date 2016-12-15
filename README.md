@@ -37,5 +37,5 @@
            }
 
 
-3) Change the vizuryServiceWorker.js and manifest.json file with the actual macros values and put them in the root directory of your domain. 
+3) Change the vizuryServiceWorker.js, manifest.json and vizury_data.json file with the actual macros values and put them in the root directory of your domain. 
 
