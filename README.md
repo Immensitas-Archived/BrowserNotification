@@ -26,5 +26,16 @@
 	   <script src="<filename as provided by Account Manager>" >
           </script>
 
+    e) Get the vizury_data.json file from account manager and place it in the root directory.
+           vizury_data = {
+                "campaign_mapping": {
+                     "DOMAINREFERENCEURL":"VIZVRMXYZ"
+                },
+                "viz_end_point":"www.vizury.com",
+                "cookie_domain":".CLIENTDOMAIN",
+                "default_campaign":"VIZVRMXYZ"
+           }
+
+
 3) Change the vizuryServiceWorker.js and manifest.json file with the actual macros values and put them in the root directory of your domain. 
 
