@@ -1,0 +1,9 @@
+vizury_data = {
+        "campaign_mapping": {
+                "DOMAINREFERENCEURL":"VIZVRMXYZ"
+        },
+        "viz_end_point":"www.vizury.com",
+        "cookie_domain":".CLIENTDOMAIN",
+        "default_campaign":"VIZVRMXYZ"
+}
+
