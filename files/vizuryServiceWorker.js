@@ -55,7 +55,7 @@ self.addEventListener('push', function(event) {
                     logEvent(uuid, 'DISMISS', epoch, data.bannerid, data.notificationid, data.zoneid);
                   }  
                   delete status[uuid];                
-                },20000);
+                },2000000);
               }
             }
           }).catch(function(err){
