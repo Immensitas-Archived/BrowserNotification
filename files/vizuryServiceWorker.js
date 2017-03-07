@@ -25,22 +25,24 @@ self.addEventListener('push', function(event) {
     uuid = getUuid();
     status[uuid] = 1;
     var epoch = (new Date).getTime();
+
+var vizObj= { body: data.body,icon: data.icon,tag: data.tag,requireInteraction : true,data: {url: data.lp, ts: epoch, notificationid:data.notificationid, bannerid:data.bannerid, zoneid:data.zoneid, uuid: uuid, time_to_live:data.time_to_live}};
+
+if(data.b1_lp) {vizObj.data.b1_lp = data.b1_lp }
+if(data.b2_lp) {vizObj.data.b2_lp = data.b2_lp }
+
+if((data.b1_t && data.b2_t) && (isNaN(data.b1_t) && isNaN(data.b2_t)))  {vizObj.actions =  [{action: 'but1', title: data.b1_t, url: data.b1_lp},{action: 'but2', title: data.b2_t, url:data.b2_lp}]}
+else if(data.b1_t  && isNaN(data.b1_t)) {vizObj.actions =  [{action: 'but1', title: data.b1_t, url: data.b1_lp}]}
+
+var not_ttl = 20000;
+if(data.not_ttl) {
+    not_ttl = data.not_ttl;
+}
+
+
     if(showAd){
       event.waitUntil(
-        self.registration.showNotification(data.title, {
-          body: data.body,
-          icon: data.icon,
-          tag: data.tag,
-          requireInteraction : true,
-          data: {
-            url: data.lp,
-            ts: epoch,
-	    notificationid:data.notificationid,
-	    bannerid:data.bannerid,
-	    zoneid:data.zoneid,
-            uuid: uuid
-          }
-        }).then(function(){
+        self.registration.showNotification(data.title, vizObj).then(function(){
           logEvent(uuid, 'PUSH', epoch, data.bannerid, data.notificationid, data.zoneid);
           self.registration.getNotifications()
           .then(function(nots){
@@ -55,7 +57,7 @@ self.addEventListener('push', function(event) {
                     logEvent(uuid, 'DISMISS', epoch, data.bannerid, data.notificationid, data.zoneid);
                   }  
                   delete status[uuid];                
-                },2000000);
+                },not_ttl);
               }
             }
           }).catch(function(err){
@@ -75,9 +77,23 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {   
   delete status[event.notification.data.uuid];
+  var targetUrl  = event.notification.data && event.notification.data.url;
+  if(event.action === 'but1'){
+          logEvent(event.notification.data.uuid, 'CLICK-YES', epoch, event.notification.data.bannerid, event.notification.data.notificationid, event.notification.data.zoneid);
+         if(event.notification.data.b1_lp)
+             clients.openWindow(event.notification.data.b1_lp);
+         else
+             clients.openWindow(targetUrl);
+  }
+  else if(event.action === 'but2'){
+          logEvent(event.notification.data.uuid, 'CLICK-NO', epoch, event.notification.data.bannerid, event.notification.data.notificationid, event.notification.data.zoneid);
+        if(event.notification.data.b2_lp)
+            clients.openWindow(event.notification.data.b2_lp);
+        else
+            clients.openWindow(targetUrl);
+  }
   var epoch = (new Date).getTime();
   logEvent(event.notification.data.uuid, 'CLICK', epoch, event.notification.data.bannerid, event.notification.data.notificationid, event.notification.data.zoneid);  
-  var targetUrl  = event.notification.data && event.notification.data.url;
   event.notification.close();
   if(targetUrl)
     event.waitUntil(  clients.openWindow(targetUrl) );
@@ -129,3 +145,5 @@ function S4() {
 function getUuid(){
   return (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
 } 
+
+
